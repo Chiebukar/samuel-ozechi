@@ -1,5 +1,6 @@
-import { motion } from "framer-motion";
-import { Github, Linkedin, Twitter, BookOpen, ArrowUpRight } from "lucide-react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
+import { Github, Linkedin, Twitter, BookOpen, ArrowUpRight, Sparkles } from "lucide-react";
+import { useRef } from "react";
 import profileImg from "@/assets/profile.jpg";
 
 const socials = [
@@ -9,110 +10,198 @@ const socials = [
   { icon: BookOpen, href: "https://samuel-ozechi.medium.com/", label: "Medium" },
 ];
 
-const fadeUp = (delay: number) => ({
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { delay, duration: 0.5, ease: "easeOut" as const },
-});
+const skills = ["Python", "TensorFlow", "PyTorch", "LangChain", "RAG", "Scikit-Learn", "FastAPI", "SQL", "GCP", "Azure", "AWS", "Docker"];
+
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.06, delayChildren: 0.2 },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 20, scale: 0.95 },
+  show: { opacity: 1, y: 0, scale: 1, transition: { type: "spring" as const, stiffness: 300, damping: 24 } },
+};
+
+const TiltCard = ({ children, className }: { children: React.ReactNode; className?: string }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const rotateX = useSpring(0, { stiffness: 200, damping: 20 });
+  const rotateY = useSpring(0, { stiffness: 200, damping: 20 });
+
+  const handleMove = (e: React.MouseEvent) => {
+    const rect = ref.current?.getBoundingClientRect();
+    if (!rect) return;
+    const px = (e.clientX - rect.left) / rect.width - 0.5;
+    const py = (e.clientY - rect.top) / rect.height - 0.5;
+    rotateX.set(-py * 8);
+    rotateY.set(px * 8);
+    x.set(px * 10);
+    y.set(py * 10);
+  };
+
+  const handleLeave = () => {
+    rotateX.set(0);
+    rotateY.set(0);
+    x.set(0);
+    y.set(0);
+  };
+
+  return (
+    <motion.div
+      ref={ref}
+      onMouseMove={handleMove}
+      onMouseLeave={handleLeave}
+      style={{ rotateX, rotateY, transformPerspective: 800 }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+};
 
 const HeroBento = () => {
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center px-4 py-20">
-      <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-3 gap-4">
-        {/* Main hero cell */}
-        <motion.div
-          {...fadeUp(0.1)}
-          className="md:col-span-2 md:row-span-2 bento-cell glow-border relative overflow-hidden"
-        >
-          <div className="relative z-10 flex flex-col justify-between h-full min-h-[340px]">
-            <div>
-              <motion.p {...fadeUp(0.2)} className="text-primary font-medium text-sm tracking-widest uppercase mb-4">
-                AI/ML Engineer
-              </motion.p>
-              <motion.h1 {...fadeUp(0.3)} className="text-4xl md:text-6xl font-bold text-gradient leading-tight mb-4">
-                Samuel Ozechi
-              </motion.h1>
-              <motion.p {...fadeUp(0.4)} className="text-muted-foreground text-lg max-w-lg leading-relaxed">
+    <section id="home" className="relative flex items-center justify-center px-4 pt-24 pb-8 md:pt-32 md:pb-12">
+      <motion.div
+        variants={container}
+        initial="hidden"
+        animate="show"
+        className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-4 gap-3 auto-rows-auto"
+      >
+        {/* Main hero cell - 3 cols */}
+        <motion.div variants={item} className="md:col-span-3">
+          <TiltCard className="bento-cell glow-border relative overflow-hidden p-8">
+            <div className="relative z-10">
+              <motion.div
+                initial={{ width: 0 }}
+                animate={{ width: "auto" }}
+                transition={{ delay: 0.5, duration: 0.4 }}
+                className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 mb-5 overflow-hidden"
+              >
+                <Sparkles className="w-3.5 h-3.5 text-primary" />
+                <span className="text-primary font-medium text-xs tracking-widest uppercase whitespace-nowrap">AI/ML Engineer</span>
+              </motion.div>
+              <h1 className="text-5xl md:text-7xl font-extrabold text-gradient leading-[1.1] mb-4 tracking-tight">
+                Samuel<br />Ozechi
+              </h1>
+              <p className="text-muted-foreground text-base md:text-lg max-w-md leading-relaxed mb-6">
                 Applied ML Researcher with 5+ years building data pipelines, fine-tuning LLMs, and shipping AI systems across fintech, energy & digital commerce.
-              </motion.p>
+              </p>
+              <div className="flex items-center gap-3">
+                <motion.a
+                  href="#contact"
+                  whileHover={{ scale: 1.04 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-primary-foreground font-medium text-sm shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-shadow"
+                >
+                  Get in Touch <ArrowUpRight className="w-4 h-4" />
+                </motion.a>
+                <motion.a
+                  href="#projects"
+                  whileHover={{ scale: 1.04 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-border text-foreground font-medium text-sm hover:border-primary/50 transition-colors"
+                >
+                  View Projects
+                </motion.a>
+              </div>
             </div>
-            <motion.div {...fadeUp(0.5)} className="flex items-center gap-3 mt-6">
-              <a
-                href="#contact"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity"
-              >
-                Get in Touch <ArrowUpRight className="w-4 h-4" />
-              </a>
-              <a
-                href="#projects"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-border text-foreground font-medium text-sm hover:border-primary/50 transition-colors"
-              >
-                View Projects
-              </a>
-            </motion.div>
-          </div>
-          <div className="absolute inset-0 mesh-gradient opacity-40 pointer-events-none" />
+            <div className="absolute inset-0 mesh-gradient opacity-30 pointer-events-none" />
+          </TiltCard>
         </motion.div>
 
         {/* Profile image cell */}
-        <motion.div {...fadeUp(0.2)} className="bento-cell glow-border-hover p-0 overflow-hidden">
-          <img
-            src={profileImg}
-            alt="Samuel Ozechi"
-            className="w-full h-full object-cover min-h-[200px]"
-          />
+        <motion.div variants={item} className="md:col-span-1">
+          <TiltCard className="bento-cell glow-border-hover p-0 overflow-hidden h-full">
+            <img
+              src={profileImg}
+              alt="Samuel Ozechi"
+              className="w-full h-full object-cover object-top min-h-[280px] md:min-h-0"
+            />
+          </TiltCard>
+        </motion.div>
+
+        {/* Skills cell - 2 cols */}
+        <motion.div variants={item} className="md:col-span-2">
+          <TiltCard className="bento-cell glow-border-hover p-5">
+            <p className="text-xs text-muted-foreground mb-3 font-semibold uppercase tracking-wider">Core Stack</p>
+            <div className="flex flex-wrap gap-2">
+              {skills.map((skill, i) => (
+                <motion.span
+                  key={skill}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.6 + i * 0.04, type: "spring" as const, stiffness: 300, damping: 20 }}
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  className="px-3 py-1.5 text-xs font-medium rounded-lg bg-secondary text-secondary-foreground border border-border cursor-default transition-colors hover:border-primary/40 hover:bg-primary/5"
+                >
+                  {skill}
+                </motion.span>
+              ))}
+            </div>
+          </TiltCard>
         </motion.div>
 
         {/* Social links cell */}
-        <motion.div {...fadeUp(0.3)} className="bento-cell glow-border-hover">
-          <p className="text-sm text-muted-foreground mb-4 font-medium">Connect</p>
-          <div className="flex flex-col gap-3">
-            {socials.map(({ icon: Icon, href, label }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 text-foreground/80 hover:text-primary transition-colors group"
-              >
-                <Icon className="w-5 h-5" />
-                <span className="text-sm">{label}</span>
-                <ArrowUpRight className="w-3 h-3 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
-              </a>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Skills cell */}
-        <motion.div {...fadeUp(0.35)} className="bento-cell glow-border-hover md:col-span-2">
-          <p className="text-sm text-muted-foreground mb-3 font-medium">Core Stack</p>
-          <div className="flex flex-wrap gap-2">
-            {["Python", "TensorFlow", "PyTorch", "LangChain", "RAG", "Scikit-Learn", "FastAPI", "SQL", "GCP", "Azure", "AWS", "Docker"].map((skill) => (
-              <span
-                key={skill}
-                className="px-3 py-1.5 text-xs font-medium rounded-lg bg-secondary text-secondary-foreground border border-border"
-              >
-                {skill}
-              </span>
-            ))}
-          </div>
+        <motion.div variants={item} className="md:col-span-1">
+          <TiltCard className="bento-cell glow-border-hover p-5 h-full">
+            <p className="text-xs text-muted-foreground mb-3 font-semibold uppercase tracking-wider">Connect</p>
+            <div className="flex flex-col gap-2.5">
+              {socials.map(({ icon: Icon, href, label }) => (
+                <motion.a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ x: 4 }}
+                  className="flex items-center gap-3 text-foreground/70 hover:text-primary transition-colors group"
+                >
+                  <div className="w-8 h-8 rounded-lg bg-secondary flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+                    <Icon className="w-4 h-4" />
+                  </div>
+                  <span className="text-sm font-medium">{label}</span>
+                  <ArrowUpRight className="w-3 h-3 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
+                </motion.a>
+              ))}
+            </div>
+          </TiltCard>
         </motion.div>
 
         {/* Stats cell */}
-        <motion.div {...fadeUp(0.4)} className="bento-cell glow-border-hover">
-          <p className="text-sm text-muted-foreground mb-4 font-medium">Experience</p>
-          <div className="space-y-3">
-            <div>
-              <p className="text-3xl font-bold text-gradient">5+</p>
-              <p className="text-xs text-muted-foreground">Years in Industry</p>
+        <motion.div variants={item} className="md:col-span-1">
+          <TiltCard className="bento-cell glow-border-hover p-5 h-full">
+            <p className="text-xs text-muted-foreground mb-3 font-semibold uppercase tracking-wider">Experience</p>
+            <div className="flex md:flex-col gap-6 md:gap-4">
+              <div>
+                <motion.p
+                  className="text-4xl font-extrabold text-gradient"
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.8, type: "spring" as const, stiffness: 200 }}
+                >
+                  5+
+                </motion.p>
+                <p className="text-xs text-muted-foreground mt-1">Years in Industry</p>
+              </div>
+              <div>
+                <motion.p
+                  className="text-4xl font-extrabold text-gradient"
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 1, type: "spring" as const, stiffness: 200 }}
+                >
+                  MSc
+                </motion.p>
+                <p className="text-xs text-muted-foreground mt-1">Financial Engineering</p>
+              </div>
             </div>
-            <div>
-              <p className="text-3xl font-bold text-gradient">MSc</p>
-              <p className="text-xs text-muted-foreground">Financial Engineering</p>
-            </div>
-          </div>
+          </TiltCard>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 };
