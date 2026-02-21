@@ -4,10 +4,12 @@ import TerminalWindow from "@/components/TerminalWindow";
 import ArticlesSection from "@/components/ArticlesSection";
 import ContactSection from "@/components/ContactSection";
 import NavDock from "@/components/NavDock";
+import GridBackground from "@/components/GridBackground";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative">
+      <GridBackground />
       <NavDock />
       <HeroBento />
       <ProjectsSection />
