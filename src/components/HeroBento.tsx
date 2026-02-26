@@ -5,7 +5,7 @@ import profileImg from "@/assets/profile.jpg";
 
 const socials = [
   { icon: Github, href: "https://github.com/Chiebukar", label: "GitHub" },
-  { icon: Linkedin, href: "https://www.linkedin.com/feed/", label: "LinkedIn" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/samuel-ozechi/", label: "LinkedIn" },
   { icon: Twitter, href: "https://x.com/0zexhi", label: "Twitter" },
   { icon: BookOpen, href: "https://samuel-ozechi.medium.com/", label: "Medium" },
 ];
