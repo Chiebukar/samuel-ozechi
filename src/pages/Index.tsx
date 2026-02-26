@@ -1,4 +1,5 @@
 import HeroBento from "@/components/HeroBento";
+import ExperienceSection from "@/components/ExperienceSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import ResearchSection from "@/components/ResearchSection";
 import TerminalWindow from "@/components/TerminalWindow";
@@ -13,6 +14,7 @@ const Index = () => {
       <GridBackground />
       <NavDock />
       <HeroBento />
+      <ExperienceSection />
       <ProjectsSection />
       <ResearchSection />
       <TerminalWindow />
