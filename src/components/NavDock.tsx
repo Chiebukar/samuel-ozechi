@@ -1,10 +1,11 @@
-import { Home, FolderOpen, Terminal, BookOpen, Mail, Sun, Moon } from "lucide-react";
+import { Home, FolderOpen, Terminal, BookOpen, Mail, Sun, Moon, FlaskConical } from "lucide-react";
 import { motion } from "framer-motion";
 import { useTheme } from "./ThemeProvider";
 
 const navItems = [
   { icon: Home, label: "Home", href: "#home" },
   { icon: FolderOpen, label: "Projects", href: "#projects" },
+  { icon: FlaskConical, label: "Research", href: "#research" },
   { icon: Terminal, label: "Terminal", href: "#terminal" },
   { icon: BookOpen, label: "Articles", href: "#articles" },
   { icon: Mail, label: "Contact", href: "#contact" },

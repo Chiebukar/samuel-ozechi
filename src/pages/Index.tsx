@@ -1,5 +1,6 @@
 import HeroBento from "@/components/HeroBento";
 import ProjectsSection from "@/components/ProjectsSection";
+import ResearchSection from "@/components/ResearchSection";
 import TerminalWindow from "@/components/TerminalWindow";
 import ArticlesSection from "@/components/ArticlesSection";
 import ContactSection from "@/components/ContactSection";
@@ -13,6 +14,7 @@ const Index = () => {
       <NavDock />
       <HeroBento />
       <ProjectsSection />
+      <ResearchSection />
       <TerminalWindow />
       <ArticlesSection />
       <ContactSection />
