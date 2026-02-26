@@ -7,18 +7,9 @@ const experiences = [
     industry: "Fintech",
     role: "AI/ML Engineer",
     location: "Lagos, Nigeria",
-    period: "Oct 2025 – Present",
+    period: "Mar 2023 – Present",
     summary:
-      "Building production ML pipelines, LLM-based applications (RAG, fine-tuning), and deploying AI models as REST APIs to automate workflows across business units.",
-  },
-  {
-    company: "Interswitch Group",
-    industry: "Fintech",
-    role: "Data Analyst",
-    location: "Lagos, Nigeria",
-    period: "Mar 2023 – Sep 2025",
-    summary:
-      "Led customer profitability analysis, built sales forecasting pipelines, and developed recommender systems to identify cross-sell opportunities and optimize revenue.",
+      "Building production ML pipelines, LLM-based applications (RAG, fine-tuning), and deploying AI models as REST APIs. Led customer profitability analysis, sales forecasting, and recommender systems to optimize revenue across business units.",
   },
   {
     company: "Sharesafe Services Ltd.",
