@@ -3,34 +3,32 @@ import { FileText, ArrowUpRight, FlaskConical } from "lucide-react";
 
 const research = [
   {
-    title: "Movie Recommender System Using Collaborative Filtering",
+    title: "Adversarial Diffusion and Probabilistic Transformer-Graphs (ADAPT-G) for Financial Fraud Detection",
     description:
-      "Designed and developed a movie recommender system as a hands-on learning resource for ML engineers on collaborative filtering techniques.",
-    tags: ["Recommender Systems", "Collaborative Filtering", "Python"],
+      "Novel framework combining adversarial diffusion models with probabilistic transformer-graph networks for robust financial fraud detection.",
+    tags: ["Diffusion Models", "Transformers", "Graph Networks", "Fraud Detection"],
+    status: "In Progress",
   },
   {
-    title: "Real-Time Data Processing & Analytics",
+    title: "Comparative Evaluation of Modern Deep Learning Methodologies for Portfolio Optimization",
     description:
-      "In-depth technical article on the techniques, technologies, and applications of real-time data processing and analytics pipelines.",
-    tags: ["Data Engineering", "Stream Processing", "Analytics"],
+      "MSc thesis evaluating state-of-the-art deep learning approaches for optimal portfolio construction and risk-adjusted returns.",
+    tags: ["Deep Learning", "Portfolio Optimization", "Financial Engineering"],
+    status: "MSc Thesis",
   },
   {
-    title: "Generative Models for Customer Segmentation",
+    title: "Explainable Threat Attribution for IoT Networks Using Conditional SHAP and Flow Behaviour Modelling",
     description:
-      "Authored research on practical applications of generative models for enhancing customer segmentation, personalization, and recommendation systems.",
-    tags: ["Generative AI", "Segmentation", "Personalization"],
+      "Interpretable ML framework for attributing cybersecurity threats in IoT networks using conditional SHAP values and network flow analysis.",
+    tags: ["XAI", "SHAP", "IoT Security", "Network Analysis"],
+    status: "Published",
   },
   {
-    title: "COVID-19 X-Ray Abnormality Segmentation",
+    title: "African Gender Classification Using Clothing Identification Via Deep Learning",
     description:
-      "Utilized CNNs to develop an object segmentation model identifying and localizing early-stage COVID-19 abnormalities on chest radiographs.",
-    tags: ["CNN", "Medical Imaging", "TensorFlow"],
-  },
-  {
-    title: "AI-Driven Customer Analytics for Business Growth",
-    description:
-      "Demonstrated how AI-driven customer analytics can drive business growth and improve customer satisfaction through data-driven strategies.",
-    tags: ["AI Analytics", "Business Intelligence", "ML"],
+      "Deep learning model for gender classification leveraging clothing identification patterns in African cultural contexts.",
+    tags: ["Computer Vision", "CNN", "Classification", "Deep Learning"],
+    status: "Published",
   },
 ];
 
@@ -99,11 +97,20 @@ const ResearchSection = () => {
                 </div>
               </div>
               <div className="relative z-10 flex-1 min-w-0">
-                <div className="flex items-center gap-2 mb-1">
-                  <h3 className="text-base font-semibold text-foreground group-hover:text-primary transition-colors truncate">
+                <div className="flex items-center gap-2 mb-1 flex-wrap">
+                  <h3 className="text-base font-semibold text-foreground group-hover:text-primary transition-colors">
                     {item.title}
                   </h3>
-                  <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0 opacity-0 group-hover:opacity-100" />
+                  <span className={`px-2 py-0.5 text-[10px] rounded-full font-semibold uppercase tracking-wider flex-shrink-0 ${
+                    item.status === "In Progress"
+                      ? "bg-primary/15 text-primary border border-primary/30"
+                      : item.status === "MSc Thesis"
+                      ? "bg-accent text-accent-foreground border border-border"
+                      : "bg-secondary text-secondary-foreground border border-border"
+                  }`}>
+                    {item.status}
+                  </span>
+                  <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0 opacity-0 group-hover:opacity-100 ml-auto" />
                 </div>
                 <p className="text-sm text-muted-foreground leading-relaxed mb-2">
                   {item.description}
