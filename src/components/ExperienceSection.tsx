@@ -9,7 +9,7 @@ const experiences = [
     location: "Lagos, Nigeria",
     period: "Mar 2023 – Present",
     summary:
-      "Building production ML pipelines, LLM-based applications (RAG, fine-tuning), and deploying AI models as REST APIs. Led customer profitability analysis, sales forecasting, and recommender systems to optimize revenue across business units.",
+      "Building production ML pipelines, LLM-based applications (RAG, fine-tuning), and deploying AI models as REST APIs and embedded/Edge AI systems. Led customer profitability analysis, sales forecasting, and recommender systems to optimize revenue across business units.",
   },
   {
     company: "Sharesafe Services Ltd.",

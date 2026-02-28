@@ -91,13 +91,13 @@ const SkillsTabs = () => {
           Technical Skills
         </button>
       </div>
-      <div className="flex flex-wrap gap-2">
-        {(activeTab === "stack" ? skills : technicalSkills).map((skill, i) => (
+      <div className="flex flex-wrap gap-2 min-h-[80px]">
+        {(activeTab === "stack" ? skills : technicalSkills).map((skill) => (
           <motion.span
-            key={skill}
+            key={`${activeTab}-${skill}`}
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: i * 0.03, type: "spring" as const, stiffness: 300, damping: 20 }}
+            transition={{ delay: 0.02, type: "spring" as const, stiffness: 300, damping: 20 }}
             whileHover={{ scale: 1.1, y: -2 }}
             className="px-3 py-1.5 text-xs font-medium rounded-lg bg-secondary text-secondary-foreground border border-border cursor-default transition-colors hover:border-primary/40 hover:bg-primary/5"
           >
@@ -226,10 +226,10 @@ const HeroBento = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 1, type: "spring" as const, stiffness: 200 }}
                 >
-                  MSc
+                  2× MSc
                 </motion.p>
                 <p className="text-xs text-muted-foreground mt-1">Computer Science</p>
-                <p className="text-xs text-muted-foreground">Financial Engineering</p>
+                <p className="text-xs text-muted-foreground mt-0.5">Financial Engineering</p>
               </div>
             </div>
           </TiltCard>
