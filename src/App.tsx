@@ -15,9 +15,11 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter>
+        {/* The basename below tells React Router where the app starts on GitHub Pages */}
+        <BrowserRouter basename="/samuel-ozechi">
           <Routes>
             <Route path="/" element={<Index />} />
+            {/* Logically, anything that isn't the root path will hit the NotFound page */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
