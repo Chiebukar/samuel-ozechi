@@ -24,7 +24,7 @@ const experiences = [
     company: "iSmile Technologies",
     industry: "IT",
     role: "Data Scientist",
-    location: "Illinois, USA",
+    location: "Illinois, USA (Remote)",
     period: "Apr – Nov 2021",
     summary:
       "Developed CNN-based medical imaging models, LSTM stock forecasting pipelines, and B2B customer segmentation using K-Means clustering.",
@@ -33,7 +33,7 @@ const experiences = [
     company: "Draft.Dev",
     industry: "Technical Content",
     role: "Content Developer (Data Science)",
-    location: "Illinois, USA",
+    location: "Illinois, USA (Remote)",
     period: "Sep 2020 – Mar 2021",
     summary:
       "Authored technical articles and built hands-on ML projects including recommender systems and guides on generative AI for customer analytics.",
@@ -84,7 +84,7 @@ const ExperienceSection = () => {
             </h2>
           </div>
           <p className="text-muted-foreground text-sm max-w-lg">
-            5+ years across fintech, energy, IT, and digital commerce.
+            6+ years across fintech, energy, IT, and digital commerce.
           </p>
         </motion.div>
 
