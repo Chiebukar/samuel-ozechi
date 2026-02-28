@@ -1,6 +1,6 @@
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { Github, Linkedin, Twitter, BookOpen, ArrowUpRight, Sparkles } from "lucide-react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import profileImg from "@/assets/profile.jpg";
 
 const socials = [
@@ -11,6 +11,8 @@ const socials = [
 ];
 
 const skills = ["Python", "TensorFlow", "PyTorch", "LangChain", "RAG", "Scikit-Learn", "FastAPI", "SQL", "GCP", "Azure", "AWS", "Docker"];
+
+const technicalSkills = ["Hypothesis Testing (A/B)", "Data Processing", "Exploratory Data Analysis", "Statistical Analysis", "Feature Engineering", "Model Selection", "Hyperparameter Tuning", "Machine Learning", "Deep Learning", "Version Control", "Model Deployment"];
 
 const container = {
   hidden: { opacity: 0 },
@@ -62,6 +64,50 @@ const TiltCard = ({ children, className }: { children: React.ReactNode; classNam
     </motion.div>
   );
 };
+const SkillsTabs = () => {
+  const [activeTab, setActiveTab] = useState<"stack" | "skills">("stack");
+  
+  return (
+    <div>
+      <div className="flex items-center gap-2 mb-3">
+        <button
+          onClick={() => setActiveTab("stack")}
+          className={`text-xs font-semibold uppercase tracking-wider px-2 py-1 rounded-md transition-colors ${
+            activeTab === "stack"
+              ? "text-primary bg-primary/10"
+              : "text-muted-foreground hover:text-foreground"
+          }`}
+        >
+          Core Stack
+        </button>
+        <button
+          onClick={() => setActiveTab("skills")}
+          className={`text-xs font-semibold uppercase tracking-wider px-2 py-1 rounded-md transition-colors ${
+            activeTab === "skills"
+              ? "text-primary bg-primary/10"
+              : "text-muted-foreground hover:text-foreground"
+          }`}
+        >
+          Technical Skills
+        </button>
+      </div>
+      <div className="flex flex-wrap gap-2">
+        {(activeTab === "stack" ? skills : technicalSkills).map((skill, i) => (
+          <motion.span
+            key={skill}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: i * 0.03, type: "spring" as const, stiffness: 300, damping: 20 }}
+            whileHover={{ scale: 1.1, y: -2 }}
+            className="px-3 py-1.5 text-xs font-medium rounded-lg bg-secondary text-secondary-foreground border border-border cursor-default transition-colors hover:border-primary/40 hover:bg-primary/5"
+          >
+            {skill}
+          </motion.span>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 const HeroBento = () => {
   return (
@@ -89,11 +135,11 @@ const HeroBento = () => {
                 Samuel<br />Ozechi
               </h1>
               <p className="text-muted-foreground text-sm md:text-base leading-relaxed mb-6">
-                AI/ML Engineer and Applied ML Researcher with 5+ years of industry experience spanning data analytics, data science, and AI systems development. Adept at building data ingestion pipelines, conducting exploratory and statistical analysis, and applying advanced ML/AI techniques, including model fine-tuning, hyperparameter optimization and integrating AI/ML systems into business applications. Domain experience includes fintech, energy, and digital commerce, with a strong emphasis on experimentation, reproducibility, and scalable deployment.
+                AI/ML Engineer and Applied ML Researcher with 6+ years of industry experience spanning data analytics, data science, and AI systems development. Adept at building data ingestion pipelines, conducting exploratory and statistical analysis, and applying advanced ML/AI techniques, including model fine-tuning, hyperparameter optimization and integrating AI/ML systems into business applications. Domain experience includes fintech, energy, and digital commerce, with a strong emphasis on experimentation, reproducibility, and scalable deployment.
               </p>
               <div className="flex items-center gap-3">
                 <motion.a
-                  href="#contact"
+                  href="mailto:ozechisamuel@gmail.com"
                   whileHover={{ scale: 1.04 }}
                   whileTap={{ scale: 0.97 }}
                   className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-primary-foreground font-medium text-sm shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-shadow"
@@ -128,21 +174,7 @@ const HeroBento = () => {
         {/* Skills cell - 2 cols */}
         <motion.div variants={item} className="md:col-span-2">
           <TiltCard className="bento-cell glow-border-hover p-5">
-            <p className="text-xs text-muted-foreground mb-3 font-semibold uppercase tracking-wider">Core Stack</p>
-            <div className="flex flex-wrap gap-2">
-              {skills.map((skill, i) => (
-                <motion.span
-                  key={skill}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.6 + i * 0.04, type: "spring" as const, stiffness: 300, damping: 20 }}
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  className="px-3 py-1.5 text-xs font-medium rounded-lg bg-secondary text-secondary-foreground border border-border cursor-default transition-colors hover:border-primary/40 hover:bg-primary/5"
-                >
-                  {skill}
-                </motion.span>
-              ))}
-            </div>
+            <SkillsTabs />
           </TiltCard>
         </motion.div>
 
@@ -183,20 +215,21 @@ const HeroBento = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.8, type: "spring" as const, stiffness: 200 }}
                 >
-                  5+
+                  6+
                 </motion.p>
                 <p className="text-xs text-muted-foreground mt-1">Years in Industry</p>
               </div>
               <div>
                 <motion.p
-                  className="text-4xl font-extrabold text-gradient"
+                  className="text-3xl font-extrabold text-gradient"
                   initial={{ opacity: 0, scale: 0.5 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 1, type: "spring" as const, stiffness: 200 }}
                 >
                   MSc
                 </motion.p>
-                <p className="text-xs text-muted-foreground mt-1">Financial Engineering</p>
+                <p className="text-xs text-muted-foreground mt-1">Computer Science</p>
+                <p className="text-xs text-muted-foreground">Financial Engineering</p>
               </div>
             </div>
           </TiltCard>
