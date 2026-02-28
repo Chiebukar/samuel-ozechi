@@ -73,7 +73,7 @@ const HeroBento = () => {
         className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-4 gap-3 auto-rows-auto"
       >
         {/* Main hero cell - 3 cols */}
-        <motion.div variants={item} className="md:col-span-3">
+        <motion.div variants={item} className="md:col-span-2">
           <TiltCard className="bento-cell glow-border relative overflow-hidden p-8">
             <div className="relative z-10">
               <motion.div
@@ -88,7 +88,7 @@ const HeroBento = () => {
               <h1 className="text-5xl md:text-7xl font-extrabold text-gradient leading-[1.1] mb-4 tracking-tight">
                 Samuel<br />Ozechi
               </h1>
-              <p className="text-muted-foreground text-base md:text-lg max-w-md leading-relaxed mb-6">
+              <p className="text-muted-foreground text-sm md:text-base leading-relaxed mb-6">
                 AI/ML Engineer and Applied ML Researcher with 5+ years of industry experience spanning data analytics, data science, and AI systems development. Adept at building data ingestion pipelines, conducting exploratory and statistical analysis, and applying advanced ML/AI techniques, including model fine-tuning, hyperparameter optimization and integrating AI/ML systems into business applications. Domain experience includes fintech, energy, and digital commerce, with a strong emphasis on experimentation, reproducibility, and scalable deployment.
               </p>
               <div className="flex items-center gap-3">
@@ -115,7 +115,7 @@ const HeroBento = () => {
         </motion.div>
 
         {/* Profile image cell */}
-        <motion.div variants={item} className="md:col-span-1">
+        <motion.div variants={item} className="md:col-span-2">
           <TiltCard className="bento-cell glow-border-hover p-0 overflow-hidden h-full">
             <img
               src={profileImg}
