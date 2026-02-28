@@ -89,7 +89,7 @@ const HeroBento = () => {
                 Samuel<br />Ozechi
               </h1>
               <p className="text-muted-foreground text-base md:text-lg max-w-md leading-relaxed mb-6">
-                Applied ML Researcher with 5+ years building data pipelines, fine-tuning LLMs, and shipping AI systems across fintech, energy & digital commerce.
+                AI/ML Engineer and Applied ML Researcher with 5+ years of industry experience spanning data analytics, data science, and AI systems development. Adept at building data ingestion pipelines, conducting exploratory and statistical analysis, and applying advanced ML/AI techniques, including model fine-tuning, hyperparameter optimization and integrating AI/ML systems into business applications. Domain experience includes fintech, energy, and digital commerce, with a strong emphasis on experimentation, reproducibility, and scalable deployment.
               </p>
               <div className="flex items-center gap-3">
                 <motion.a
