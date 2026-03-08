@@ -195,12 +195,11 @@ const HeroBento = () => {
           <TiltCard className="bento-cell glow-border-hover p-5 h-full">
             <p className="text-xs text-muted-foreground mb-3 font-semibold uppercase tracking-wider">Connect</p>
             <div className="flex flex-col gap-2.5">
-              {socials.map(({ icon: Icon, href, label }) => (
+              {socials.map(({ icon: Icon, href, label, external }) => (
                 <motion.a
                   key={label}
                   href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  {...(external !== false ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                   whileHover={{ x: 4 }}
                   className="flex items-center gap-3 text-foreground/70 hover:text-primary transition-colors group"
                 >
