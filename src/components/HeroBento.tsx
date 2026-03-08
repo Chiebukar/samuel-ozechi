@@ -1,5 +1,5 @@
 import { motion, useMotionValue, useSpring } from "framer-motion";
-import { Github, Linkedin, Twitter, BookOpen, ArrowUpRight, Sparkles } from "lucide-react";
+import { Github, Linkedin, Twitter, BookOpen, ArrowUpRight, Sparkles, FileText } from "lucide-react";
 import { useRef, useState } from "react";
 import profileImg from "@/assets/profile.jpg";
 
