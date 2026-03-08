@@ -3,9 +3,13 @@ import { Github, Linkedin, Twitter, BookOpen, ArrowUpRight, Sparkles } from "luc
 import { useRef, useState } from "react";
 import profileImg from "@/assets/profile.jpg";
 
+const resumeMailto = `mailto:ozechisamuel@gmail.com?subject=${encodeURIComponent("Request for Resume")}&body=${encodeURIComponent("Hi Samuel,\n\nI would like to request a copy of your resume.\n\nName: [Your Name]\nCompany: [Your Company]\nReason: [Purpose for requesting the resume]\n\nThank you!")}`;
+
+const linkedinMailto = `mailto:ozechisamuel@gmail.com?subject=${encodeURIComponent("Request for LinkedIn Profile")}&body=${encodeURIComponent("Hi Samuel,\n\nI would like to request your LinkedIn profile link.\n\nName: [Your Name]\nCompany: [Your Company]\nPurpose: [Reason for connecting]\n\nThank you!")}`;
+
 const socials = [
   { icon: Github, href: "https://github.com/Chiebukar", label: "GitHub" },
-  { icon: Linkedin, href: "https://www.linkedin.com/in/samuel-ozechi/", label: "LinkedIn" },
+  { icon: Linkedin, href: linkedinMailto, label: "LinkedIn", external: false },
   { icon: Twitter, href: "https://x.com/0zexhi", label: "Twitter" },
   { icon: BookOpen, href: "https://samuel-ozechi.medium.com/", label: "Medium" },
 ];
