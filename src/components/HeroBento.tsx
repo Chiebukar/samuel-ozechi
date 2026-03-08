@@ -1,11 +1,15 @@
 import { motion, useMotionValue, useSpring } from "framer-motion";
-import { Github, Linkedin, Twitter, BookOpen, ArrowUpRight, Sparkles } from "lucide-react";
+import { Github, Linkedin, Twitter, BookOpen, ArrowUpRight, Sparkles, FileText } from "lucide-react";
 import { useRef, useState } from "react";
 import profileImg from "@/assets/profile.jpg";
 
+const resumeMailto = `mailto:ozechisamuel@gmail.com?subject=${encodeURIComponent("Request for Resume")}&body=${encodeURIComponent("Hi Samuel,\n\nI would like to request a copy of your resume.\n\nName: [Your Name]\nCompany: [Your Company]\nReason: [Purpose for requesting the resume]\n\nThank you!")}`;
+
+const linkedinMailto = `mailto:ozechisamuel@gmail.com?subject=${encodeURIComponent("Request for LinkedIn Profile")}&body=${encodeURIComponent("Hi Samuel,\n\nI would like to request your LinkedIn profile link.\n\nName: [Your Name]\nCompany: [Your Company]\nPurpose: [Reason for connecting]\n\nThank you!")}`;
+
 const socials = [
   { icon: Github, href: "https://github.com/Chiebukar", label: "GitHub" },
-  { icon: Linkedin, href: "https://www.linkedin.com/in/samuel-ozechi/", label: "LinkedIn" },
+  { icon: Linkedin, href: linkedinMailto, label: "LinkedIn", external: false },
   { icon: Twitter, href: "https://x.com/0zexhi", label: "Twitter" },
   { icon: BookOpen, href: "https://samuel-ozechi.medium.com/", label: "Medium" },
 ];
@@ -147,6 +151,14 @@ const HeroBento = () => {
                   Get in Touch <ArrowUpRight className="w-4 h-4" />
                 </motion.a>
                 <motion.a
+                  href={resumeMailto}
+                  whileHover={{ scale: 1.04 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-border text-foreground font-medium text-sm hover:border-primary/50 transition-colors"
+                >
+                  <FileText className="w-4 h-4" /> Request Resume
+                </motion.a>
+                <motion.a
                   href="#projects"
                   whileHover={{ scale: 1.04 }}
                   whileTap={{ scale: 0.97 }}
@@ -183,12 +195,11 @@ const HeroBento = () => {
           <TiltCard className="bento-cell glow-border-hover p-5 h-full">
             <p className="text-xs text-muted-foreground mb-3 font-semibold uppercase tracking-wider">Connect</p>
             <div className="flex flex-col gap-2.5">
-              {socials.map(({ icon: Icon, href, label }) => (
+              {socials.map(({ icon: Icon, href, label, external }) => (
                 <motion.a
                   key={label}
                   href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  {...(external !== false ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                   whileHover={{ x: 4 }}
                   className="flex items-center gap-3 text-foreground/70 hover:text-primary transition-colors group"
                 >

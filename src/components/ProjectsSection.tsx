@@ -5,7 +5,7 @@ import { useState } from "react";
 const projects = [
   {
     title: "LLM-Powered Workflow Automation",
-    description: "Production RAG pipelines and prompt-engineered LLM apps automating business workflows at Interswitch.",
+    description: "Production RAG pipelines and prompt-engineered LLM apps automating business workflows in fintech.",
     tags: ["LangChain", "RAG", "Python", "FastAPI"],
     icon: Brain,
   },
