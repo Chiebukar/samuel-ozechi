@@ -23,12 +23,3 @@ It showcases:
 * **Package Manager:** Bun
 
 ---
-
-## 📂 Project Structure
-
-* `src/components/ui/`: Modular UI components including `HeroBento`, `TerminalWindow`, and `GridBackground`.
-* `src/pages/`: Main page layouts and section logic.
-* `src/assets/`: Branding assets and icons.
-* `.github/workflows/`: Automated CI/CD pipeline for GitHub Pages deployment.
-
----
